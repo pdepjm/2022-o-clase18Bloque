@@ -1,6 +1,7 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?><projectDescription>
-	<name>tom-y-jerry-wgame</name>
-	<comment/>
+<?xml version="1.0" encoding="UTF-8"?>
+<projectDescription>
+	<name>BloquesGameTomJerry</name>
+	<comment></comment>
 	<projects>
 	</projects>
 	<buildSpec>
