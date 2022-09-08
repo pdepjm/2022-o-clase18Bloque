@@ -19,7 +19,7 @@ object tomYJerry {
 	}
 
 	method agregarPersonajes() {
-		game.addVisual(tom)
+		game.addVisualCharacter(tom)
 		game.addVisual(jerry)
 		game.addVisual(spike)
 		game.addVisual(carpincho)
@@ -27,11 +27,14 @@ object tomYJerry {
 	}
 
 	method configurarTeclas() {
-		
+		keyboard.alt().onPressDo({tom.cambiarImagen()})
+		keyboard.space().onPressDo({tom.hablar()})
+		keyboard.control().onPressDo({tom.saltar()})
 	}
 
 	method configurarAcciones() {
-		
+		game.onTick(5500,"movimiento de jerry", {jerry.moveteAUnLugarRandom()})
+		game.onCollideDo(tom, {chocado => chocado.teChocasteConTom()})
 	}
 
 }
