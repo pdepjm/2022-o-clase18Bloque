@@ -1,0 +1,5 @@
+import tomYJerry.*
+
+program tomYJerry {
+	tomYJerry.iniciar()
+}

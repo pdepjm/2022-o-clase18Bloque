@@ -1,0 +1,30 @@
+import wollok.game.*
+import personajes.*
+
+describe "Tom y Jerry" {
+	
+	fixture {
+		game.clear() // Importante!!
+		game.addVisual(tom)
+		game.addVisual(jerry)
+		game.addVisual(spike)
+		game.addVisual(carpincho)
+	}
+
+	test "Jerry choca con Tom" {
+		tom.moverseA(game.at(1, 1))
+		jerry.chocasteConTom()
+		assert.equals(game.at(0, 1), jerry.position())
+	}
+
+	test "Spike choca con Tom" {
+		spike.chocasteConTom()
+		assert.equals("tom-triste.png", tom.image())
+	}
+	
+	test "Carpincho choca con Tom" {
+		// ?????
+	}
+
+}
+
