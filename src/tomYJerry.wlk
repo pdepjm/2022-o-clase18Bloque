@@ -23,11 +23,13 @@ object tomYJerry {
 		game.addVisual(jerry)
 		game.addVisual(spike)
 		game.addVisual(carpincho)
+		game.addVisual(sombrero)
 	}
 
 	method configurarTeclas() {
 		keyboard.alt().onPressDo({ tom.cambiarImagen()})
 		keyboard.space().onPressDo({ tom.hablar()})
+		keyboard.s().onPressDo({ tom.saltar() })
 	}
 
 	method configurarAcciones() {

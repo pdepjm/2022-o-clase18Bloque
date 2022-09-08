@@ -4,7 +4,7 @@ import movimientos.*
 object tom {
 
 	var property position = game.at(2, 2)
-	var imagen = "tom.png"
+	var imagen = "tom2.png"
 
 	method image() = imagen
 
@@ -13,10 +13,10 @@ object tom {
 	}
 	
 	method cambiarImagen(){
-		if (imagen == "tom.png"){
+		if (imagen == "tom2.png"){
 		    imagen = "tomAlt.png"
 		} else {
-			imagen = "tom.png"
+			imagen = "tom2.png"
 		}
 	}
 	
@@ -25,7 +25,21 @@ object tom {
 	}
 	
 	method hablar (){
-		game.say(tom, "Soy Tom! Ayudame a atrapar a Jerry")
+		game.say(self, "Soy Tom! Ayudame a atrapar a Jerry")
+	}
+	
+	method saltar (){
+		game.schedule(1000, { self.subir() })
+		game.schedule(1500, { self.bajar() })
+		//CUIDADO CON LOS TIEMPOS!
+	}
+	
+	method subir(){
+		position = self.position().up(1)
+	}
+	
+	method bajar(){
+		position = self.position().down(1)
 	}
 
 }
@@ -39,7 +53,7 @@ object jerry {
 	method image() = "jerry.png"
 
 	method chocasteConTom() {
-		game.say(jerry, "GANASTE!!")
+		game.say(self, "GANASTE!")
 		tom.ganaste()
 		movimiento = cazado
 		game.schedule(3000, { game.stop()})
@@ -64,9 +78,24 @@ object spike {
 
 object carpincho {
 
+	var property position = game.at(1, 6)
+
 	method image() = "carpincho.png"
+	
+	method chocasteConTom() {
+		3.times({n=>self.moverse()})
+	}
 
-	method position() = game.at(1, 6)
-
+	method moverse(){
+		position = self.position().down(1)
+	}
+	
 }
 
+object sombrero {
+
+	method position() = tom.position().up(1)
+
+	method image() = "Sombrero.png"
+
+}
