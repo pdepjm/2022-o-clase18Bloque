@@ -27,7 +27,6 @@ object tom {
 	method saltar (){
 		position = position.up(1)
 		position = position.down(1)
-		//CUIDADO CON LOS TIEMPOS!
 	}
 
 }
