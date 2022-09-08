@@ -13,11 +13,7 @@ object tom {
 	}
 	
 	method cambiarImagen(){
-		if (imagen == "tom2.png"){
-		    imagen = "tomAlt.png"
-		} else {
-			imagen = "tom2.png"
-		}
+		imagen = "tomAlt.png"
 	}
 	
 	method ganaste (){
@@ -29,34 +25,28 @@ object tom {
 	}
 	
 	method saltar (){
-		game.schedule(1000, { self.subir() })
-		game.schedule(1500, { self.bajar() })
+		position = position.up(1)
+		position = position.down(1)
 		//CUIDADO CON LOS TIEMPOS!
-	}
-	
-	method subir(){
-		position = self.position().up(1)
-	}
-	
-	method bajar(){
-		position = self.position().down(1)
 	}
 
 }
 
 object jerry {
 
-	var movimiento = aleatorio
+	var property position = game.at(8, 8)
 
-	method position() = movimiento.posicion()
+	method nuevaPosition(posicion) {
+		position = posicion
+	} 
 
 	method image() = "jerry.png"
 
 	method chocasteConTom() {
 		game.say(self, "GANASTE!")
 		tom.ganaste()
-		movimiento = cazado
-		game.schedule(3000, { game.stop()})
+		self.nuevaPosition(game.at(1,1))
+		game.stop()
 	}
 
 }
@@ -71,7 +61,8 @@ object spike {
 //		terminar el juego
 		game.say(jerry, "jaja perdiste gil")
 		tom.perdiste()
-		game.schedule(3000, { game.stop()})
+		jerry.nuevaPosition(game.at(1,1))
+		game.stop()
 	}
 
 }
@@ -83,13 +74,11 @@ object carpincho {
 	method image() = "carpincho.png"
 	
 	method chocasteConTom() {
-		3.times({n=>self.moverse()})
+		position = position.down(1)
+		position = position.down(1)
+		position = position.down(1)
 	}
 
-	method moverse(){
-		position = self.position().down(1)
-	}
-	
 }
 
 object sombrero {
